@@ -9,6 +9,8 @@ const apiCore = axios.create({
   },
 });
 
+
+
 export const registerEvento = async (eventoData) => {
   try {
     const response = await apiCore.post("eventos/", eventoData);
@@ -27,3 +29,22 @@ export const getEventos = async () => {
     throw new Error("Error obteniendo los eventos: " + error.message);
   }
 }
+
+export const updateEvento = async (evento) => {
+  try {
+    const response = await apiCore.put(`eventos/${evento.id}/`, evento);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error actualizando el evento: " + error.message);
+  }
+};
+
+
+export const deleteEvento = async (id) => {
+  try {
+    const response = await apiCore.delete(`eventos/${id}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Error eliminando el evento: " + error.message);
+  }
+};
